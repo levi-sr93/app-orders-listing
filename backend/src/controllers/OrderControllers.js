@@ -19,6 +19,8 @@ class OrderController {
       description,
     });
 
+    req.io.emit("newOrder", order);
+
     res.json(order);
   }
 
@@ -37,6 +39,7 @@ class OrderController {
       { new: true }
     );
 
+    req.io.emit("statusChange", order);
     return res.json(order);
   }
 }

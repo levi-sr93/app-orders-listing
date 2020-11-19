@@ -15,6 +15,11 @@ const app = express();
 const server = http.Server(app);
 const io = socketIo(server);
 
+app.use((req, res, next) => {
+  req.io = io;
+  return next();
+});
+
 //to use json on the request body
 app.use(express.json());
 app.use(router);
