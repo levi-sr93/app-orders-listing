@@ -1,17 +1,43 @@
+const Order = require("../models/Oder");
 class OrderController {
   //list all orders
-  index(req, res) {
-    res.send("index");
+  async index(req, res) {
+    const orders = await Order.find();
+    return res.json(orders);
   }
 
   //create order
-  store(req, res) {
-    res.send("store");
+  async store(req, res) {
+    const { table, description } = req.body;
+
+    if (!table || !description) {
+      return res.sendStatus(400);
+    }
+
+    const order = await Order.create({
+      table,
+      description,
+    });
+
+    res.json(order);
   }
 
   //update orders
-  update(req, res) {
-    res.send("update");
+  async update(req, res) {
+    const { id } = req.params;
+    const { status } = req.body;
+
+    if (!status) {
+      return res.sendStatus(400);
+    }
+
+    const order = await Order.findByIdAndUpdate(
+      { _id: id },
+      { status },
+      { new: true }
+    );
+
+    return res.json(order);
   }
 }
 
