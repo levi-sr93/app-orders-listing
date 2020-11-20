@@ -1,17 +1,19 @@
+import Orders from './components/Orders';
+import logo from '../src/assets/logo.png';
 import GlobalStyles from './styles/GlobalStyles';
+import { Container, Content } from './styles/styles';
 
 function App() {
   return (
     <>
       <GlobalStyles />
-      <h1>olá</h1>
-      {/* <Container>
-        <Content> */}
-      {/* <img src={logo} alt="" /> */}
+      <Container>
+        <Content>
+          <img src={logo} alt="" />
 
-      {/* <h1>Orders</h1>
+          <Orders />
         </Content>
-      </Container> */}
+      </Container>
     </>
   );
 }

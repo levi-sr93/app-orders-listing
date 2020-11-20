@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 const http = require("http");
 const socketIo = require("socket.io");
 
@@ -19,6 +20,8 @@ app.use((req, res, next) => {
   req.io = io;
   return next();
 });
+
+app.use(cors());
 
 //to use json on the request body
 app.use(express.json());
